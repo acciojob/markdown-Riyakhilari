@@ -1,13 +1,22 @@
-import React from "react";
-import MarkdownEditor from "./Markdown"; // Corrected import
+import React, { useState } from 'react'
+import ReactMarkdown from 'react-markdown'
+import './markedown.css'
 
-function App() {
-  return (
-    <div>
-      <h1>Markdown Editor</h1>
-      <MarkdownEditor />
-    </div>
-  );
+const App = () => {
+
+    const [markdown, setMarkdown] = useState("")
+    const [loading, setLoading] = useState(true)
+
+    const handleChange = (e) => {
+        setMarkdown(e.target.value)
+    }
+
+    return (
+        <div className='app'>
+            <textarea className="textarea" onChange={handleChange}></textarea>
+            <ReactMarkdown className="preview" children={markdown} />
+        </div>
+    )
 }
 
-export default App;
+export default App
